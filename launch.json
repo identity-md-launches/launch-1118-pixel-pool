@@ -1,0 +1,16 @@
+{
+  "kind": "univ4_hook",
+  "hook": {
+    "contract": "PixelPoolHook",
+    "constructorArgs": ["$poolManager", "$token"],
+    "permissions": ["beforeInitialize", "afterSwap"]
+  },
+  "token": { "contract": "PixelToken", "name": "Pixel Pool", "symbol": "PIXEL", "decimals": 18 },
+  "pool": {
+    "pairedCurrency": "0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
+    "fee": 12500,
+    "tickSpacing": 60,
+    "initialPrice": "79228162514264337593543950336"
+  },
+  "notes": "PIXEL POOL on Ethereum mainnet paired with IMD. PixelPoolHook(IPoolManager $poolManager, address $token) has permissions beforeInitialize and afterSwap (mask 0x2040), no return deltas, no fee, no owner. Every swap paints one dot on a 32x32 on chain canvas in order: green for buys, red for sells, brighter for bigger IMD amounts; after 1024 swaps it repaints from the top. PixelToken has no constructor arguments, 18 decimals and a fixed 10^27 supply minted to its deployer. initialPrice 2^96 is the decimal sqrtPriceX96 for provenance; the launch economics set the actual opening price. Deploy the hook and initialize the pool in one transaction."
+}
